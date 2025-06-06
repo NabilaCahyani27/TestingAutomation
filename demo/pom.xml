@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.demo.testng.program</groupId>
@@ -30,33 +30,35 @@
         </dependency>
 
         <!-- <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.4.14</version>
-      </dependency> -->
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.4.14</version>
+        </dependency> -->
     </dependencies>
-   <build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <version>3.0.0-M9</version>
-      <configuration>
-        <forkCount>0</forkCount>
-        <suiteXmlFiles>
-          <suiteXmlFile>src/test/resources/testng_simple_suite.xml</suiteXmlFile>
-          <!-- <suiteXmlFile>src/test/resources/testng_parallel_suite.xml</suiteXmlFile> -->
-        </suiteXmlFiles>
-      </configuration>
-    </plugin>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M9</version>
+                    <configuration>
+                        <forkCount>0</forkCount>
+                        <suiteXmlFiles>
+                            <!-- <suiteXmlFile>src/test/resources/testng_simple_suite.xml</suiteXmlFile> -->
+                            <suiteXmlFile>src/test/resources/testng_parallel_suite.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
-     <!-- To use the plugin goals in your POM or parent POM -->
+        <!-- To use the plugin goals in your POM or parent POM -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
         </plugins>
-  </plugins>
-</build>
+    </build>
 </project>

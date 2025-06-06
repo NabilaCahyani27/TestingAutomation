@@ -1,0 +1,8 @@
+restassured\RestAssuredTest.class
+testng\data_provider\DataProviderSample.class
+scenario\RestAssuredE2ETest.class
+testng\DataProviderTest.class
+testng\retry_mecanism\RetrySample.class
+testng\SimpleTest.class
+testng\RetryTest.class
+testng\data\Product.class
