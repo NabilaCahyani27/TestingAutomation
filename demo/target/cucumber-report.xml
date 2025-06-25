@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="8.756" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-06-25T13:30:59.178158Z">
+<testcase classname="Employee API" name="Register a new employee" time="5.933">
+<system-out><![CDATA[
+When Send employee to register with body:...................................passed
+Then The response status must be 200........................................passed
+And The response schema should be match with schema "register-schema.json"..passed
+]]></system-out>
+</testcase>
+<testcase classname="Employee API" name="Login with registered employee" time="2.384">
+<system-out><![CDATA[
+When Send employee to login with body:......................................passed
+Then The response status must be 200........................................passed
+And Save the token from the response to local storage.......................passed
+]]></system-out>
+</testcase>
+</testsuite>
