@@ -28,6 +28,40 @@
             <version>5.3.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.23.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.23.0</version>
+            <scope>test</scope>
+        </dependency>
+          <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.21.1</version>
+            <scope>test</scope>
+        </dependency>
+         <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>dotenv-java</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>7.22.2</version>
+            <scope>test</scope>
+        </dependency>
         <!-- Jackson Databind, untuk memproses data JSON -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -60,6 +94,7 @@
                         <suiteXmlFiles>
                             <!-- <suiteXmlFile>src/test/resources/testng_simple_suite.xml</suiteXmlFile> -->
                             <suiteXmlFile>src/test/resources/testng_parallel_suite.xml</suiteXmlFile>
+                             <!-- <suiteXmlFile>${suiteXml}</suiteXmlFile> -->
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>
