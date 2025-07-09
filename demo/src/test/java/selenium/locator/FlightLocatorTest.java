@@ -1,11 +1,16 @@
 package selenium.locator;
 
+
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,102 +30,102 @@ public class FlightLocatorTest {
         Thread.sleep(5000);
     }
     
-    // @Test(priority = 1)
-    // public void flightStaticDropdownTest() throws InterruptedException {
+    @Test(priority = 1)
+    public void flightStaticDropdownTest() throws InterruptedException {
 
-    //     // This is a placeholder for the actual test implementation
-    //     // You can add your test logic here
-    //     System.out.println("Flight locator test is running.");
-
-
-    //     // Static dropdown example
-    //     // select[@id = "ctl00_mainContent_DropDownListCurrency"]/option[@value = "USD"]
-    //     WebElement staticDropdown = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency"));
-    //     Select dropdown = new Select(staticDropdown);
-
-    //     System.out.println("all options"+dropdown.getAllSelectedOptions().size());
-    //     System.out.println("first selected option: " + dropdown.getFirstSelectedOption().getText());
-    //     System.out.println("all options: " + dropdown.getOptions().size());
-
-    //     dropdown.selectByVisibleText("AED");
-    //     dropdown.selectByIndex(1);
-
-    //     Thread.sleep(3000);
-    // }
+        // This is a placeholder for the actual test implementation
+        // You can add your test logic here
+        System.out.println("Flight locator test is running.");
 
 
-    // @Test(priority = 2)
-    // public void flightDynamicDropdownTest() throws InterruptedException {
+        // Static dropdown example
+        // select[@id = "ctl00_mainContent_DropDownListCurrency"]/option[@value = "USD"]
+        WebElement staticDropdown = driver.findElement(By.id("ctl00_mainContent_DropDownListCurrency"));
+        Select dropdown = new Select(staticDropdown);
 
-    //     // This is a placeholder for the actual test implementation
-    //     // You can add your test logic here
-    //     System.out.println("Flight locator test is running.");
+        System.out.println("all options"+dropdown.getAllSelectedOptions().size());
+        System.out.println("first selected option: " + dropdown.getFirstSelectedOption().getText());
+        System.out.println("all options: " + dropdown.getOptions().size());
+
+        dropdown.selectByVisibleText("AED");
+        dropdown.selectByIndex(1);
+
+        Thread.sleep(3000);
+    }
 
 
-    //     // Dynamic dropdown example
+    @Test(priority = 2)
+    public void flightDynamicDropdownTest() throws InterruptedException {
 
-    //     driver.findElement(By.id("divpaxinfo")).click();
+        // This is a placeholder for the actual test implementation
+        // You can add your test logic here
+        System.out.println("Flight locator test is running.");
 
-    //     Thread.sleep(3000);
 
-    //     // Increase the number of adults
-    //     // driver.findElement(By.id("hrefIncAdt")).click();
+        // Dynamic dropdown example
 
-    //     for(int i = 0;i < 5 ; i++){
-    //         driver.findElement(By.id("hrefIncAdt")).click();
-    //     }
+        driver.findElement(By.id("divpaxinfo")).click();
 
-    //     for(int i = 0;i < 2 ; i++){
-    //         driver.findElement(By.id("hrefIncChd")).click();
-    //     }
+        Thread.sleep(3000);
 
-    //     for(int i = 0;i < 2 ; i++){
-    //         driver.findElement(By.id("hrefIncInf")).click();
-    //     }
+        // Increase the number of adults
+        // driver.findElement(By.id("hrefIncAdt")).click();
 
-    //     driver.findElement(By.id("btnclosepaxoption")).click();
+        for(int i = 0;i < 5 ; i++){
+            driver.findElement(By.id("hrefIncAdt")).click();
+        }
 
-    //     Thread.sleep(5000);
-    // }
+        for(int i = 0;i < 2 ; i++){
+            driver.findElement(By.id("hrefIncChd")).click();
+        }
 
-    // @Test(priority = 3)
-    // public void flightDestinationTest() throws InterruptedException {
+        for(int i = 0;i < 2 ; i++){
+            driver.findElement(By.id("hrefIncInf")).click();
+        }
 
-    //     // This is a placeholder for the actual test implementation
-    //     // You can add your test logic here
-    //     System.out.println("Flight locator test is running.");
+        driver.findElement(By.id("btnclosepaxoption")).click();
 
-    //     // From country
-    //     // New Delhi = //div[@id="dropdownGroup1"]/div[@class="dropdownDiv"]/ul[1]
+        Thread.sleep(5000);
+    }
 
-    //     driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
-    //     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    //     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
-    //     List<WebElement> options = driver.findElements(By.xpath("//div[@id='dropdownGroup1']/div[@class='dropdownDiv']/ul[1]/li"));
+    @Test(priority = 3)
+    public void flightDestinationTest() throws InterruptedException {
 
-    //     for(WebElement element:options){
-    //         System.out.println("Option: " + element.getText());
-    //         if (element.getText().equals("Delhi (DEL)")) {
-    //             System.out.println("Found option: " + element.getText());
-    //             element.click();
-    //             break;
-    //         }
-    //     }
+        // This is a placeholder for the actual test implementation
+        // You can add your test logic here
+        System.out.println("Flight locator test is running.");
 
-    //     // Arrival country
-    //      List<WebElement> optionsArrival = driver.findElements(By.xpath("//div[@id='dropdownGroup1']/div[@class='dropdownDiv']/ul[1]/li"));
+        // From country
+        // New Delhi = //div[@id="dropdownGroup1"]/div[@class="dropdownDiv"]/ul[1]
 
-    //      for(WebElement element:optionsArrival){
-    //         System.out.println("Option Arrival: " + element.getText());
-    //         if (element.getText().equals("Chennai (MAA)")) {
-    //             System.out.println("Found option: " + element.getText());
-    //             element.click();
-    //             break;
-    //         }
-    //     }
+        driver.findElement(By.id("ctl00_mainContent_ddl_originStation1_CTXT")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+        List<WebElement> options = driver.findElements(By.xpath("//div[@id='dropdownGroup1']/div[@class='dropdownDiv']/ul[1]/li"));
 
-    //     Thread.sleep(5000);
-    // }
+        for(WebElement element:options){
+            System.out.println("Option: " + element.getText());
+            if (element.getText().equals("Delhi (DEL)")) {
+                System.out.println("Found option: " + element.getText());
+                element.click();
+                break;
+            }
+        }
+
+        // Arrival country
+         List<WebElement> optionsArrival = driver.findElements(By.xpath("//div[@id='dropdownGroup1']/div[@class='dropdownDiv']/ul[1]/li"));
+
+         for(WebElement element:optionsArrival){
+            System.out.println("Option Arrival: " + element.getText());
+            if (element.getText().equals("Chennai (MAA)")) {
+                System.out.println("Found option: " + element.getText());
+                element.click();
+                break;
+            }
+        }
+
+        Thread.sleep(5000);
+    }
 
     @Test(priority = 4)
     public void handleSuggestion() throws InterruptedException{
