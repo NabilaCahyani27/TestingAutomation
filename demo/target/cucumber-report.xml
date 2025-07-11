@@ -1,17 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="8.756" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-06-25T13:30:59.178158Z">
-<testcase classname="Employee API" name="Register a new employee" time="5.933">
+<testsuite name="Cucumber" time="115.556" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-07-11T13:31:48.034544600Z">
+<testcase classname="Complete checkout process on SauceDemo" name="User logs in and completes a purchase" time="9.029">
 <system-out><![CDATA[
-When Send employee to register with body:...................................passed
-Then The response status must be 200........................................passed
-And The response schema should be match with schema "register-schema.json"..passed
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "standard_user" and password "secret_sauce".passed
+Then User should be redirected to the inventory page........................passed
+When User adds "Sauce Labs Backpack" to the cart............................passed
+And User proceeds to checkout...............................................passed
+And User fills in checkout information with first name "Nabila", last name "Cahyani", and postal code "12345".passed
+Then User should see the order confirmation message "Thank you for your order!".passed
 ]]></system-out>
 </testcase>
-<testcase classname="Employee API" name="Login with registered employee" time="2.384">
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.1" time="16.035">
 <system-out><![CDATA[
-When Send employee to login with body:......................................passed
-Then The response status must be 200........................................passed
-And Save the token from the response to local storage.......................passed
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "standard_user" and password "secret_sauce".passed
+Then User should see "inventory page".......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.2" time="9.554">
+<system-out><![CDATA[
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "locked_out_user" and password "secret_sauce".passed
+Then User should see "Epic sadface: Sorry, this user has been locked out."..passed
+]]></system-out>
+</testcase>
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.3" time="17.973">
+<system-out><![CDATA[
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "problem_user" and password "secret_sauce"..passed
+Then User should see "inventory page".......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.4" time="26.334">
+<system-out><![CDATA[
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "performance_glitch_user" and password "secret_sauce".passed
+Then User should see "inventory page".......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.5" time="18.853">
+<system-out><![CDATA[
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "error_user" and password "secret_sauce"....passed
+Then User should see "inventory page".......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Login to SauceDemo with multiple users" name="Login with different users - #1.6" time="17.086">
+<system-out><![CDATA[
+Given User is on the SauceDemo login page...................................passed
+When User logs in with username "visual_user" and password "secret_sauce"...passed
+Then User should see "inventory page".......................................passed
 ]]></system-out>
 </testcase>
 </testsuite>
