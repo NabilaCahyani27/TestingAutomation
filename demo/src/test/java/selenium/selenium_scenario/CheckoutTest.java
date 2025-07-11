@@ -15,95 +15,78 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CheckoutTest {
-     WebDriver driver;
+    WebDriver driver;
+    WebDriverWait wait;
 
     @BeforeClass
-    public void setup() throws InterruptedException{
-         // Setup WebDriver
-          System.setProperty("webdriver.chrome.drive", "C:\\ChromeDriver\\chromedriver-win64");
-
+    public void setup() throws InterruptedException {
+        // Setup WebDriver
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("https://rahulshettyacademy.com/client");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
     }
 
     @Test
-    public void Login(){
+    public void Login() {
         // This is a placeholder for the actual test implementation
         // You can add your test logic here
-        System.out.println("Valid credentials test is running.");
+        driver.get("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
 
-        //Insert credential
-        driver.findElement(By.id("userEmail")).sendKeys("simanjuntakalbert57@gmail.com");
-        driver.findElement(By.id("userPassword")).sendKeys("XBf@rWNvByn!#K8");
-
-        driver.findElement(By.id("login")).click();
-
-        String homepage = driver.findElement(By.xpath("//div[@class = 'left mt-1']/p")).getText();
-
-        Assert.assertEquals(homepage, "Automation Practice","Home page text does not match!");
+        // Cek apakah kita di halaman inventory
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue(currentUrl.contains("inventory"), "Login failed or not redirected to inventory!");
     }
 
+    @Test(dependsOnMethods = { "Login" })
+    public void CheckoutScenarioTest() throws InterruptedException {
+        String productName = "Sauce Labs Backpack"; // produk yang tersedia di SauceDemo
 
-    @Test(dependsOnMethods = {"Login"})
-    public void CheckoutScenarioTest() throws InterruptedException{
-        String productName = "ZARA COAT 3";
+        // Tunggu produk muncul
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("inventory_item")));
 
-        // Explicitly wait for the product to be visible
-        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
-        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+        // Pilih produk berdasarkan nama
+        List<WebElement> products = driver.findElements(By.className("inventory_item"));
+        WebElement selectedProduct = products.stream()
+                .filter(p -> p.findElement(By.className("inventory_item_name")).getText().equals(productName))
+                .findFirst()
+                .orElse(null);
 
-        List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
-        WebElement productToSelect = products.stream().filter(prod -> prod.findElement(By.cssSelector("b")).getText().equals(productName)).findFirst().orElse(null);
+        Assert.assertNotNull(selectedProduct, "Product not found: " + productName);
+        selectedProduct.findElement(By.tagName("button")).click(); // Klik "Add to cart"
 
-        productToSelect.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+        driver.findElement(By.className("shopping_cart_link")).click(); // Klik cart icon
 
-        Thread.sleep(2000);
+        // Verifikasi produk muncul di keranjang
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("cart_item")));
+        String cartItemName = driver.findElement(By.className("inventory_item_name")).getText();
+        Assert.assertEquals(cartItemName, productName, "Product not in cart!");
 
-        driver.findElement(By.cssSelector("[routerlink*='cart']")).click();
+        // Klik Checkout
+        driver.findElement(By.id("checkout")).click();
 
-        // Scenario Cart Page
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".cartSection h3")));
+        // Isi form checkout
+        driver.findElement(By.id("first-name")).sendKeys("Nabila");
+        driver.findElement(By.id("last-name")).sendKeys("Cahyani");
+        driver.findElement(By.id("postal-code")).sendKeys("12345");
+        driver.findElement(By.id("continue")).click();
 
-        List<WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
+        // Verifikasi halaman review order
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("finish")));
+        driver.findElement(By.id("finish")).click(); // Submit order
 
-        boolean isProductInCart = cartProducts.stream().anyMatch(cartProd -> cartProd.getText().equals(productName));
-
-        Assert.assertTrue(isProductInCart, "Product not found in cart!");
-
-        driver.findElement(By.cssSelector(".totalRow button")).click();
-        
-        // Scenario select address
-        Actions action = new Actions(driver);
-
-        action.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")),"ind").build().perform();
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
-
-        String address = "Indonesia";
-
-        List<WebElement> countries = driver.findElements(By.xpath("//span[@class='ng-star-inserted']"));
-
-        WebElement countryToSelect = countries.stream().filter(country -> country.getText().equalsIgnoreCase(address)).findFirst().orElse(null);
-
-        countryToSelect.click();
-
-        driver.findElement(By.cssSelector(".action__submit")).click();
-
-        // Scenario Order Confirmation
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".hero-primary")));
-        String confirmationMessagae = driver.findElement(By.cssSelector(".hero-primary")).getText();
-
-        Assert.assertTrue(confirmationMessagae.contains("THANKYOU FOR THE ORDER."), "Order confirmation message not found!");
-
-        Thread.sleep(2000);
+        // Verifikasi pesan sukses
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("complete-header")));
+        String confirmationText = driver.findElement(By.className("complete-header")).getText();
+        Assert.assertEquals(confirmationText, "Thank you for your order!", "Order confirmation not found!");
     }
 
     @AfterClass
     public void tearDown() {
-        // Close the browser after the test
         if (driver != null) {
             driver.quit();
         }
