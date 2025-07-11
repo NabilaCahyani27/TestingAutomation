@@ -9,6 +9,11 @@ C:\Nabila\TestingAutomation\demo\src\test\java\runners\TestRuner.java
 C:\Nabila\TestingAutomation\demo\src\test\java\scenario\E2EPojo.java
 C:\Nabila\TestingAutomation\demo\src\test\java\scenario\RestAssuredE2ETest.java
 C:\Nabila\TestingAutomation\demo\src\test\java\schemavalidation\SchemaValidation.java
+C:\Nabila\TestingAutomation\demo\src\test\java\selenium\locator\Alert.java
+C:\Nabila\TestingAutomation\demo\src\test\java\selenium\locator\FlightLocatorTest.java
+C:\Nabila\TestingAutomation\demo\src\test\java\selenium\locator\HandleWindow.java
+C:\Nabila\TestingAutomation\demo\src\test\java\selenium\locator\Iframe.java
+C:\Nabila\TestingAutomation\demo\src\test\java\selenium\locator\SeleniumIntroductionTest.java
 C:\Nabila\TestingAutomation\demo\src\test\java\testng\AssertTest.java
 C:\Nabila\TestingAutomation\demo\src\test\java\testng\data\Product.java
 C:\Nabila\TestingAutomation\demo\src\test\java\testng\data_provider\DataProviderSample.java
