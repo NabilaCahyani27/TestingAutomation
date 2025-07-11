@@ -4,16 +4,16 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import demo.base.BaseTest;
-import demo.pages.LoginPage;
-import demo.pages.InventoryPage;
 import demo.pages.CartPage;
 import demo.pages.CheckoutPage;
 import demo.pages.ConfirmationPage;
-
+import demo.pages.InventoryPage;
+import demo.pages.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import utils.UserType;
 
 public class StepDefinitions extends BaseTest {
     /*
@@ -55,11 +55,23 @@ public class StepDefinitions extends BaseTest {
                 "Expected: \"" + expectedText + "\" but got: \"" + actualText + "\"");
     }
 
-    @When("User logs in with username {string} and password {string}")
-    public void user_logs_in(String username, String password) {
-        loginPage.login(username, password);
+    @When("User logs in as {string}")
+    public void user_logs_in(String userTypeName) {
+        UserType user;
 
-        // Inisialisasi hanya jika login berhasil (tidak ada pesan error)
+        switch (userTypeName.toLowerCase()) {
+            case "standard":
+                user = UserType.STANDARD;
+                break;
+            case "locked_out":
+                user = UserType.LOCKED_OUT;
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown user type: " + userTypeName);
+        }
+
+        loginPage.login(user.username, user.password);
+
         if (driver.getCurrentUrl().contains("inventory")) {
             inventoryPage = new InventoryPage(driver);
             cartPage = new CartPage(driver);

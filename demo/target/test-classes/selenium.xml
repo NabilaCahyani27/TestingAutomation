@@ -5,7 +5,8 @@
     <classes>
       <!-- <class name="selenium.locator.SeleniumIntroductionTest"/> -->
         <!-- <class name="selenium.locator.FlightLocatorTest"/> -->
-           <class name="selenium.selenium_scenario.CheckoutTest"/>
+           <!-- <class name="selenium.selenium_scenario.CheckoutTest"/> -->
+            <class name="demo.runners.SeleniumRunner"/>
     </classes>
   </test>
 </suite>
