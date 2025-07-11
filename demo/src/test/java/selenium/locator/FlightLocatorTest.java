@@ -16,10 +16,10 @@ public class FlightLocatorTest {
     @BeforeMethod
     public void setup() throws InterruptedException{
          // Setup WebDriver
-        System.setProperty("webdriver.chrome.drive", "C:\\ChromeDriver\\chromedriver-win64");
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
 
         driver = new ChromeDriver();
-        driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+        driver.get("https://www.saucedemo.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
         Thread.sleep(5000);
